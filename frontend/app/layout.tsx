@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Baskervville, Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
+import { ReactQueryProviders } from "./providers";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -30,7 +31,7 @@ export default function RootLayout({
       className={`${roboto.variable} ${baskerville.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <main>{children}</main>
+        <ReactQueryProviders>{children}</ReactQueryProviders>
       </body>
     </html>
   );

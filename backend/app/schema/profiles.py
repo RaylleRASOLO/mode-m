@@ -24,3 +24,12 @@ class SignUpResponse(BaseModel):
     avatar: Optional[str] = None
     role: UserRole
     message: str
+
+class SignInRequest(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class SignInResponse(BaseModel):
+    access_token: str
+    refresh_token: Optional[str] = None

@@ -1,6 +1,6 @@
 
 from fastapi import APIRouter, Depends, HTTPException
-from app.schema.profiles import SignUpRequest, SignUpResponse
+from app.schema.profiles import SignInRequest, SignUpRequest, SignUpResponse
 from app.services.auth.auth import AuthService
 
 
@@ -21,11 +21,10 @@ def sign_up(
   
 @router.post("/sign_in")
 def sign_in(
-    email: str,
-    password: str,
+    data: SignInRequest,
     auth_service: AuthService = Depends(get_auth_service),
 ):
     try:
-        return auth_service.sign_in(email, password)
+        return auth_service.sign_in(data.email, data.password)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

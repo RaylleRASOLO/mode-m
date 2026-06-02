@@ -3,8 +3,10 @@ interface ButtonProps {
   children?: React.ReactNode;
   variant?: "outlined" | "fill" | "ghost";
   className?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
-export default function Button({ onClick, children, variant, className }: ButtonProps) {
+export default function Button({ onClick, children, variant, className, type, disabled }: ButtonProps) {
   const baseClasses = "bg-primary hover:bg-primary/90 duration-300 cursor-pointer text-primary-foreground";
   const variantClasses = {
     outlined: "border border-primary text-primary hover:bg-primary/10",
@@ -13,7 +15,7 @@ export default function Button({ onClick, children, variant, className }: Button
   };
 
   return (
-    <button className={`font-medium py-2 px-4 cursor-pointer inline-flex justify-center items-center gap-1 ${variant ? variantClasses[variant] : baseClasses} ${className || ""}`} onClick={onClick}>
+    <button type={type} className={`font-medium py-2 px-4 cursor-pointer inline-flex justify-center items-center gap-1 ${variant ? variantClasses[variant] : baseClasses} ${className || ""}`} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );
